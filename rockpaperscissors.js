@@ -30,9 +30,10 @@ function playRound(playerSelection, computerSelection) {
     return ["You Lost! Scissors beats Paper.", 0];
   } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
     return ["You Lost! Rock beats Scissors.", 0];
-  } else {
-    // playerSelection === "Scissors" && computerSelection === "Paper"
+  } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
     return ["You Win! Scissors beats Paper.", 1];
+  } else {
+    return undefined;
   }
 }
 
@@ -44,9 +45,13 @@ function game(numberOfRounds) {
     let computerSelection = getComputerChoice();
     let result = playRound(playerSelection, computerSelection);
 
-    if (result[1] == -1) {
+    if (result === undefined) {
+      return;
+    }
+
+    if (result[1] === -1) {
       i--;
-    } else if (result[1] == 1) {
+    } else if (result[1] === 1) {
       playerScore++;
     } else {
       // result[1] == 0
