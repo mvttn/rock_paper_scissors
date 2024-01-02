@@ -46,7 +46,7 @@ function game(numberOfRounds) {
     let result = playRound(playerSelection, computerSelection);
 
     if (result === undefined) {
-      return;
+      break;
     }
 
     if (result[1] === -1) {
