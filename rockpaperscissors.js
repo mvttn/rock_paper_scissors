@@ -14,11 +14,12 @@ function normaliseInput(input) {
 }
 
 function playRound(playerSelection, computerSelection) {
+  console.log(
+    `Your selection: ${playerSelection} ## Opponent Selection: ${computerSelection}`
+  );
   if (playerSelection === computerSelection) {
     console.log("Draw! Go again!");
-    playerSelection = normaliseInput(prompt("Enter your selection: "));
-    computerSelection = getComputerChoice();
-    playRound(playerSelection, computerSelection);
+    return undefined;
   } else if (playerSelection === "Rock" && computerSelection === "Paper") {
     return "You Lost! Paper beats Rock.";
   } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
@@ -29,17 +30,23 @@ function playRound(playerSelection, computerSelection) {
     return "You Lost! Scissors beats Paper.";
   } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
     return "You Lost! Rock beats Scissors.";
-  } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-    return "You Lost! Scissors beats Paper.";
+  } else {
+    // playerSelection === "Scissors" && computerSelection === "Paper"
+    return "You Win! Scissors beats Paper.";
   }
 }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
+function game(numberOfRounds) {
+  for (let i = 0; i < numberOfRounds; i++) {
     let playerSelection = normaliseInput(prompt("Enter your selection: "));
     let computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection));
+    let result = playRound(playerSelection, computerSelection);
+    if (result == undefined) {
+      i--;
+      continue;
+    }
+    console.log(result);
   }
 }
 
-game();
+game(5);
