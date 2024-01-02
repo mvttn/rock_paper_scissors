@@ -13,3 +13,24 @@ function normaliseInput(input) {
   return input[0].toUpperCase() + input.substring(1).toLowerCase();
 }
 
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    console.log("Draw! Go again!");
+    playerSelection = normaliseInput(prompt("Enter your selection: "));
+    computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+  } else if (playerSelection === "Rock" && computerSelection === "Paper") {
+    return "You Lost! Paper beats Rock.";
+  } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
+    return "You Win! Rock beats Scissors.";
+  } else if (playerSelection === "Paper" && computerSelection === "Rock") {
+    return "You Win! Paper beats Rock.";
+  } else if (playerSelection === "Paper" && computerSelection === "Scissors") {
+    return "You Lost! Scissors beats Paper.";
+  } else if (playerSelection === "Scissors" && computerSelection === "Rock") {
+    return "You Lost! Rock beats Scissors.";
+  } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
+    return "You Lost! Scissors beats Paper.";
+  }
+}
+
