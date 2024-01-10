@@ -37,28 +37,42 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game(numberOfRounds) {
+function game() {
   let playerScore = 0;
   let computerScore = 0;
-  for (let i = 0; i < numberOfRounds; i++) {
-    let playerSelection = normaliseInput(prompt("Enter your selection: "));
-    let computerSelection = getComputerChoice();
-    let result = playRound(playerSelection, computerSelection);
+  const p = document.querySelector("p");
+  const rockButton = document.createElement("button");
+  const paperButton = document.createElement("button");
+  const scissorsButton = document.createElement("button");
 
-    if (result === undefined) {
-      break;
-    }
+  rockButton.textContent = "Rock!";
+  paperButton.textContent = "Paper!";
+  scissorsButton.textContent = "Scissors!";
+  p.appendChild(rockButton);
+  p.appendChild(paperButton);
+  p.appendChild(scissorsButton);
 
-    if (result[1] === -1) {
-      i--;
-    } else if (result[1] === 1) {
-      playerScore++;
-    } else {
-      // result[1] == 0
-      computerScore++;
-    }
-    console.log(result[0]);
+  let playerSelection;
+  rockButton.addEventListener("click", () => {
+    playerSelection = "Rock";
+  });
+  paperButton.addEventListener("click", () => {
+    playerSelection = "Paper";
+  });
+  paperButton.addEventListener("click", () => {
+    playerSelection = "Scissors";
+  });
+
+  let computerSelection = getComputerChoice();
+  let result = playRound(playerSelection, computerSelection);
+
+  if (result[1] === 1) {
+    playerScore++;
+  } else {
+    // result[1] === 0
+    computerScore++;
   }
+  console.log(result[0]);
   if (playerScore > computerScore) {
     console.log(`You Win! Score: ${playerScore}:${computerScore}`);
   } else if (playerScore < computerScore) {
@@ -68,4 +82,4 @@ function game(numberOfRounds) {
   }
 }
 
-game(5);
+game();
