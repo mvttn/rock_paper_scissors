@@ -24,9 +24,10 @@ h1 {
 
 h3,
 button {
-  margin: 25px;
+  margin: 42px;
   margin-top: 16px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
 }
 
 button {
@@ -35,5 +36,7 @@ button {
   padding: 6px 12px 6px 12px;
   border-radius: 8px;
   border-width: 2px;
+  font-size: 24px;
   color: rgb(19, 41, 97);
+  box-shadow: 4px 3px;
 }
