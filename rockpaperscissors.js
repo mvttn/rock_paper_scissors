@@ -48,21 +48,21 @@ function updateScore(result) {
 
 function winnerFound(PLAYERSCORE, COMPUTERSCORE) {
   const message = document.querySelector("#message");
-  const moveLog = document.querySelectorAll("li");
   if (PLAYERSCORE === 5) {
     message.textContent = "Congratulations! You Won!";
-    for (let i = 0; (li = moveLog[i]); i++) {
-      li.parentNode.removeChild(li);
-    }
     return true;
   } else if (COMPUTERSCORE === 5) {
     message.textContent = "Better luck next time! You Lost!";
-    for (let i = 0; (li = moveLog[i]); i++) {
-      li.parentNode.removeChild(li);
-    }
     return true;
   }
   return false;
+}
+
+function resetMoveLog() {
+  const moveLog = document.querySelectorAll("li");
+  for (let i = 0; (li = moveLog[i]); i++) {
+    li.parentNode.removeChild(li);
+  }
 }
 
 function updateMoveLog(playerSelection, computerSelection) {
@@ -90,6 +90,7 @@ function game() {
     if (winnerFound(PLAYERSCORE, COMPUTERSCORE)) {
       PLAYERSCORE = 0;
       COMPUTERSCORE = 0;
+      resetMoveLog();
       return;
     }
   });
@@ -101,6 +102,7 @@ function game() {
     if (winnerFound(PLAYERSCORE, COMPUTERSCORE)) {
       PLAYERSCORE = 0;
       COMPUTERSCORE = 0;
+      resetMoveLog();
       return;
     }
   });
@@ -112,6 +114,7 @@ function game() {
     if (winnerFound(PLAYERSCORE, COMPUTERSCORE)) {
       PLAYERSCORE = 0;
       COMPUTERSCORE = 0;
+      resetMoveLog();
       return;
     }
   });
