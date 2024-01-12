@@ -48,14 +48,33 @@ function updateScore(result) {
 
 function winnerFound(PLAYERSCORE, COMPUTERSCORE) {
   const message = document.querySelector("#message");
+  const moveLog = document.querySelectorAll("li");
   if (PLAYERSCORE === 5) {
     message.textContent = "Congratulations! You Won!";
+    for (let i = 0; (li = moveLog[i]); i++) {
+      li.parentNode.removeChild(li);
+    }
     return true;
   } else if (COMPUTERSCORE === 5) {
     message.textContent = "Better luck next time! You Lost!";
+    for (let i = 0; (li = moveLog[i]); i++) {
+      li.parentNode.removeChild(li);
+    }
     return true;
   }
   return false;
+}
+
+function updateMoveLog(playerSelection, computerSelection) {
+  const playerMoves = document.querySelector("#playerMoves");
+  const computerMoves = document.querySelector("#computerMoves");
+
+  const playerLogItem = document.createElement("li");
+  playerLogItem.textContent = playerSelection;
+  playerMoves.appendChild(playerLogItem);
+  const computerLogItem = document.createElement("li");
+  computerLogItem.textContent = computerSelection;
+  computerMoves.appendChild(computerLogItem);
 }
 
 function game() {
@@ -66,6 +85,7 @@ function game() {
   rockButton.addEventListener("click", () => {
     let playerSelection = "Rock";
     let computerSelection = getComputerChoice();
+    updateMoveLog(playerSelection, computerSelection);
     updateScore(playRound(playerSelection, computerSelection));
     if (winnerFound(PLAYERSCORE, COMPUTERSCORE)) {
       PLAYERSCORE = 0;
@@ -76,6 +96,7 @@ function game() {
   paperButton.addEventListener("click", () => {
     let playerSelection = "Paper";
     let computerSelection = getComputerChoice();
+    updateMoveLog(playerSelection, computerSelection);
     updateScore(playRound(playerSelection, computerSelection));
     if (winnerFound(PLAYERSCORE, COMPUTERSCORE)) {
       PLAYERSCORE = 0;
@@ -86,6 +107,7 @@ function game() {
   scissorsButton.addEventListener("click", () => {
     let playerSelection = "Scissors";
     let computerSelection = getComputerChoice();
+    updateMoveLog(playerSelection, computerSelection);
     updateScore(playRound(playerSelection, computerSelection));
     if (winnerFound(PLAYERSCORE, COMPUTERSCORE)) {
       PLAYERSCORE = 0;
