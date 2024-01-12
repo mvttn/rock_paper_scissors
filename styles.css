@@ -9,11 +9,12 @@ h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#score,
-#message {
-  margin-top: 100px;
-  margin-bottom: 100px;
+.scoremsg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  align-items: center;
 }
 
 .container {
@@ -24,10 +25,13 @@ h1 {
 
 h3,
 button {
-  margin: 42px;
+  margin: 20px;
   margin-top: 16px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 20px;
+  justify-content: center;
+  max-width: 200px;
+  flex-grow: 1;
 }
 
 button {
